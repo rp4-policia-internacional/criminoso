@@ -1,5 +1,5 @@
-import CriminosoRepository from "@modules/pessoa/infra/prisma/repositories/CriminosoRepository";
-import ICriminosoRepository from "@modules/pessoa/repository/ICriminosoRepository";
+import CriminosoRepository from "@modules/criminoso/infra/prisma/repositories/CriminosoRepository";
+import ICriminosoRepository from "@modules/criminoso/repository/ICriminosoRepository";
 import { container } from "tsyringe";
 
 container.registerSingleton<ICriminosoRepository>(

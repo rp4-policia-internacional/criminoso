@@ -25,4 +25,11 @@ model Criminoso {
   foto String @db.VarChar
   status String @db.VarChar
 
-}//dar migrate 
+}
+
+model Organizacao {
+  id String @id @default(uuid())
+  nome String @db.VarChar
+  descricao String @db.VarChar
+
+}

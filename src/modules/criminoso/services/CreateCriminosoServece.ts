@@ -12,8 +12,10 @@ class CreateCriminosoService{
         private criminosoRepository:ICriminosoRepository
     ){}
 
+    
     public async execute(data:ICreateCriminosoDTO): Promise<Criminoso>{
-
+        
+        //regra de negocio
         if (data.idade<=5) {
             throw new AppError("Quant >=5",400);
             

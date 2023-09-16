@@ -1,9 +1,11 @@
-import ICreateCriminosoDTO from "@modules/pessoa/dtos/ICreateCriminoso.dto";
-import CriminosoEntity from "@modules/pessoa/entities/Criminoso.entity";
-import ICriminosoRepository from "@modules/pessoa/repository/ICriminosoRepository";
 import { prisma } from "@shared/infra/prisma";
+import ICreateCriminosoDTO from "@modules/criminoso/dtos/ICreateCriminoso.dto";
+import CriminosoEntity from "@modules/criminoso/entities/Criminoso.entity";
+import ICriminosoRepository from "@modules/criminoso/repository/ICriminosoRepository";
+
 
 export default class CriminosoRepository implements ICriminosoRepository{
+    
     public async create(data: ICreateCriminosoDTO): Promise<CriminosoEntity> {
         const criminoso = await prisma.criminoso.create({data});
 
@@ -24,5 +26,10 @@ export default class CriminosoRepository implements ICriminosoRepository{
         return criminoso as unknown as CriminosoEntity;
 
     }
+    public async listAll(): Promise<CriminosoEntity[]> {
+        const criminosos = await prisma.criminoso.findMany();       
+        return criminosos;
+    }
+  
 
 }
