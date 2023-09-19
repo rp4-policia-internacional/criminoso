@@ -33,11 +33,3 @@ model Organizacao {
   descricao String @db.VarChar
 
 }
-
-model OrgCriminoso{
-  id String @id @default(uuid())
-  grupoID String @db.VarChar
-  criminosoID String @db.VarChar
-  funcaoCriminoso String @db.VarChar
-
-}
