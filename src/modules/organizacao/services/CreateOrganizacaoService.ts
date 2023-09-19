@@ -12,9 +12,9 @@ class CreateOrganizacaoService{
     ){}
 
     public async execute(data: ICreateOrganizacaoDTO):Promise<OrganizacaoEntity>{
-        const org = await this.organizacaoRepository.create(data)
+        const orgCriminoso = await this.organizacaoRepository.create(data)
 
-        return org;
+        return orgCriminoso;
 
     }
         

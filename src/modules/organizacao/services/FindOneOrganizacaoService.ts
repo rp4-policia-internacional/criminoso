@@ -9,7 +9,7 @@ class FindOneOganizacaoService{
         private organizacaoRepository: IOrganizacaoRepository
     ){}
 
-    public async excecute(id:string){
+    public async excecute(id: string){
         const findOrg= await this.organizacaoRepository.findById(id);
         
         return findOrg;

@@ -40,21 +40,21 @@ export default class OrganizacaoController{
         const updatedOrganizacao = await updateOrganizacao.execute({
             id,
             nome, 
-           descricao,
+            descricao,
         });
         return res.json(updatedOrganizacao).status(201).send();
     }
     
-    /*public async getOne(req: Request, res: Response): Promise<Response> {
+    public async getOne(req: Request, res: Response): Promise<Response> {
         const getOneOrganizacao = container.resolve(FindOneOrganizacaoService);
 
         const {id} = req.params;
 
-        const gotOneOrganizacao = await getOneOrganizacao.execute({id});
+        const gotOneOrganizacao = await getOneOrganizacao.excecute(id);
 
         return res.json(gotOneOrganizacao).status(200).send();
 
-    }*/
+    }
 
     public async getAll(req: Request, res: Response): Promise<Response> {
         const getAllOrganizacao = container.resolve(ListOrganizacaoService);

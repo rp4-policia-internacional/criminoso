@@ -7,7 +7,7 @@ const controller = new OrganizacaoController;
 
 organizacaoRoutes.post("/",controller.create);
 organizacaoRoutes.delete("/:id", controller.delete);
-//organizacaoRoutes.get("/:id", controller.getOne);
+organizacaoRoutes.get("/:id", controller.getOne);
 organizacaoRoutes.get("/", controller.getAll);
 organizacaoRoutes.put("/", controller.update);
 
