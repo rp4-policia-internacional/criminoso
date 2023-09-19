@@ -8,7 +8,3 @@ container.registerSingleton<ICriminosoRepository>(
     'CriminosoRepository',
     CriminosoRepository
 );
-container.registerSingleton<IOrganizacaoRepository>(
-    'OrganizacaoRepository',
-    OrganizacaoRepository
-);
