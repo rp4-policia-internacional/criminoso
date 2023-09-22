@@ -3,13 +3,13 @@ export default interface ICreateCriminosoDTO {
     nome: string;
     sobrenome: string;
     caracteristicas: string;
-    paisOrigem: string;
+    id_paisOrigem: string;
     apelido: string;
     dataNascimento: Date;
     altura: number;
     idade: number ;
     genero: string;
-    vistoPorUltimo: string;
+    id_paisVistoPorUltimo: string;
     foto: string;
     status:string;
 }

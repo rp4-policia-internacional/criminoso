@@ -16,11 +16,11 @@ model Criminoso {
   sobrenome String @db.VarChar
   apelido String @db.VarChar
   caracteristicas String @db.VarChar
-  paisOrigem String @db.VarChar
+  id_paisOrigem String @db.VarChar
   altura Float @db.DoublePrecision
   idade Int @db.Integer
   genero String @db.VarChar
-  vistoPorUltimo String @db.VarChar
+  id_paisVistoPorUltimo String @db.VarChar
   dataNascimento DateTime @db.Date
   foto String @db.VarChar
   status String @db.VarChar

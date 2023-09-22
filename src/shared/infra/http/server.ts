@@ -10,6 +10,8 @@ import "@shared/container/providers";
 
 import "@shared/infra/prisma";
 
+import swaggerUI from 'swagger-ui-express';
+import swaggerDocument from '@shared/infra/http/routes/swagger.json';
 
 const app = express();
 app.use(cors());
@@ -32,6 +34,7 @@ app.use((err: Error, req: Request,res:Response, _: NextFunction)=>{
         message:"Internal server error",
     });
 });
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument)); 
 
 const porta = process.env.PORT || 8080;
 

@@ -11,7 +11,7 @@ export default class CriminosoController{
     public async create(req:Request, res:Response):Promise<Response>{
         const createCriminoso = container.resolve(CreateCriminosoService);
 
-        const {id,nome,sobrenome,caracteristicas,paisOrigem,apelido,dataNascimento,altura,idade,genero,vistoPorUltimo,foto,status} = req.body;
+        const {id,nome,sobrenome,caracteristicas,id_paisOrigem,apelido,dataNascimento,altura,idade,genero,id_paisVistoPorUltimo,foto,status} = req.body;
 
         const formatedDate=new Date(dataNascimento).toISOString();
         
@@ -20,13 +20,13 @@ export default class CriminosoController{
             nome, 
             sobrenome, 
             caracteristicas, 
-            paisOrigem, 
+            id_paisOrigem, 
             apelido, 
             dataNascimento:new Date(formatedDate), 
             altura, 
             idade, 
             genero, 
-            vistoPorUltimo, 
+            id_paisVistoPorUltimo, 
             foto, 
             status,
         });
@@ -49,7 +49,7 @@ export default class CriminosoController{
     public async update(req: Request, res: Response): Promise<Response> {
         const updateCriminoso = container.resolve(UpdateCriminosoService);
 
-        const {id,nome,sobrenome,caracteristicas,paisOrigem,apelido,dataNascimento,altura,idade,genero,vistoPorUltimo,foto,status} = req.body;
+        const {id,nome,sobrenome,caracteristicas,id_paisOrigem,apelido,dataNascimento,altura,idade,genero,id_paisVistoPorUltimo,foto,status} = req.body;
 
         const formatedDate = new Date(dataNascimento).toISOString();
         const createdCriminoso = await updateCriminoso.execute({
@@ -57,13 +57,13 @@ export default class CriminosoController{
             nome, 
             sobrenome, 
             caracteristicas, 
-            paisOrigem, 
+            id_paisOrigem, 
             apelido, 
             dataNascimento:new Date(formatedDate), 
             altura, 
             idade, 
             genero, 
-            vistoPorUltimo, 
+            id_paisVistoPorUltimo, 
             foto, 
             status,
         });
