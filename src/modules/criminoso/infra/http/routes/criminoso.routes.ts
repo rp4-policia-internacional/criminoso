@@ -15,7 +15,7 @@ criminosoRoutes.put("/", controller.update);
 
 
 const upload = multer({dest: path.join(__dirname, '../../../uploads')});
-criminosoRoutes.post('/upload', upload.single('file'), (request, response) =>{
+criminosoRoutes.post('/upload', upload.single('imagem'), (request, response) =>{
     try {
         console.log('Arquivo carregado:', request.file);
         response.status(200).send('Upload bem-sucedido');
