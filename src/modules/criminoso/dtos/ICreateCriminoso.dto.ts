@@ -1,7 +1,6 @@
 export default interface ICreateCriminosoDTO {
     id:string;
-    nome: string;
-    sobrenome: string;
+    nomeCompleto: string;
     caracteristicas: string;
     id_paisOrigem: string;
     apelido: string;
@@ -12,4 +11,5 @@ export default interface ICreateCriminosoDTO {
     id_paisVistoPorUltimo: string;
     foto: string;
     status:string;
+    id_organizacao:string
 }

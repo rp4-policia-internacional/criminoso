@@ -1,7 +1,6 @@
 class CriminosoEntity{
     id:string;
-    nome: string;
-    sobrenome: string;
+    nomeCompleto:string;
     caracteristicas: string;
     id_paisOrigem: string;
     apelido: string;
@@ -12,11 +11,11 @@ class CriminosoEntity{
     id_paisVistoPorUltimo: string;
     foto: string;
     status:string;
+    id_organizacao:string;
 
-    constructor(id:string, nome:string,sobrenome:string, caracteristicas: string, id_paisOrigem:string,apelido:string, dataNascimento:Date, altura: number, idade: number , genero:string, id_paisVistoPorUltimo:string, foto:string,status:string ){
+    constructor(id:string, nomeCompleto:string, caracteristicas: string, id_paisOrigem:string,apelido:string, dataNascimento:Date, altura: number, idade: number , genero:string, id_paisVistoPorUltimo:string, foto:string,status:string,id_organizacao:string ){
         this.id=id;
-        this.nome=nome;
-        this.sobrenome=sobrenome;
+        this.nomeCompleto=nomeCompleto;
         this.caracteristicas=caracteristicas;
         this.id_paisOrigem=id_paisOrigem;
         this.apelido=apelido;
@@ -27,6 +26,7 @@ class CriminosoEntity{
         this.id_paisVistoPorUltimo=id_paisVistoPorUltimo;
         this.foto= foto;
         this.status=status;
+        this.id_organizacao=id_organizacao;
     }
  
 }

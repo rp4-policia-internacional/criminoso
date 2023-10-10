@@ -11,14 +11,13 @@ export default class CriminosoController{
     public async create(req:Request, res:Response):Promise<Response>{
         const createCriminoso = container.resolve(CreateCriminosoService);
 
-        const {id,nome,sobrenome,caracteristicas,id_paisOrigem,apelido,dataNascimento,altura,idade,genero,id_paisVistoPorUltimo,foto,status} = req.body;
+        const {id,nomeCompleto,caracteristicas,id_paisOrigem,apelido,dataNascimento,altura,idade,genero,id_paisVistoPorUltimo,foto,status,id_organizacao} = req.body;
 
         const formatedDate=new Date(dataNascimento).toISOString();
         
         const createdCriminoso = await createCriminoso.execute({
             id,
-            nome, 
-            sobrenome, 
+            nomeCompleto, 
             caracteristicas, 
             id_paisOrigem, 
             apelido, 
@@ -29,6 +28,7 @@ export default class CriminosoController{
             id_paisVistoPorUltimo, 
             foto, 
             status,
+            id_organizacao
         });
     
         return res.json(createdCriminoso).status(201).send(); 
@@ -49,13 +49,12 @@ export default class CriminosoController{
     public async update(req: Request, res: Response): Promise<Response> {
         const updateCriminoso = container.resolve(UpdateCriminosoService);
 
-        const {id,nome,sobrenome,caracteristicas,id_paisOrigem,apelido,dataNascimento,altura,idade,genero,id_paisVistoPorUltimo,foto,status} = req.body;
+        const {id,nomeCompleto,caracteristicas,id_paisOrigem,apelido,dataNascimento,altura,idade,genero,id_paisVistoPorUltimo,foto,status,id_organizacao} = req.body;
 
         const formatedDate = new Date(dataNascimento).toISOString();
         const createdCriminoso = await updateCriminoso.execute({
             id,
-            nome, 
-            sobrenome, 
+            nomeCompleto, 
             caracteristicas, 
             id_paisOrigem, 
             apelido, 
@@ -66,6 +65,7 @@ export default class CriminosoController{
             id_paisVistoPorUltimo, 
             foto, 
             status,
+            id_organizacao
         });
         return res.json(createdCriminoso).status(201).send();
     }
