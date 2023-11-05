@@ -27,4 +27,6 @@ model Organizacao {
   id        String @id @default(uuid())
   nome      String @db.VarChar
   descricao String @db.VarChar
+  lider     String @db.VarChar
+  sigla     String @db.VarChar
 }

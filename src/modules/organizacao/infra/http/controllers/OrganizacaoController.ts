@@ -11,12 +11,14 @@ export default class OrganizacaoController{
     public async create(req:Request, res:Response):Promise<Response>{
         const createOrganizacao = container.resolve(CreateOrganizacaoService);
 
-        const {id,nome,descricao} = req.body;
+        const {id,nome,descricao,lider,sigla} = req.body;
 
         const createdOrganizacao = await createOrganizacao.execute({
             id,
             nome, 
             descricao,
+            lider,
+            sigla,
         });
     
         return res.json(createdOrganizacao).status(201).send(); 
@@ -35,12 +37,14 @@ export default class OrganizacaoController{
     public async update(req:Request,res:Response):Promise<Response>{
         const updateOrganizacao= container.resolve(UpdateOrganizacaoService);
 
-        const {id,nome,descricao} = req.body;
+        const {id,nome,descricao,lider,sigla} = req.body;
         
         const updatedOrganizacao = await updateOrganizacao.execute({
             id,
             nome, 
             descricao,
+            lider,
+            sigla,
         });
         return res.json(updatedOrganizacao).status(201).send();
     }
