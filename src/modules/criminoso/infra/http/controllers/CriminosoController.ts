@@ -5,10 +5,12 @@ import DeleteCriminosoService from "@modules/criminoso/services/DeleteCriminosoS
 import UpdateCriminosoService from "@modules/criminoso/services/UpdateCriminosoService";
 import FindOneCriminosoService from "@modules/criminoso/services/FindOneCriminosoService";
 import ListCriminosoService from "@modules/criminoso/services/ListCriminosoService";
-import Criminoso from "@modules/criminoso/entities/Criminoso.entity";
+import { CriminosoMemento } from "@modules/criminoso/memento/CriminosoMemento";
+import { CriminosoCareTaker } from "@modules/criminoso/memento/CriminosoCareTaker";
+
 
 export default class CriminosoController{
-    private statusMementos: { [id: string]: Criminoso } = {};
+    
     public async create(req:Request, res:Response):Promise<Response>{
         const createCriminoso = container.resolve(CreateCriminosoService);
 
@@ -31,7 +33,11 @@ export default class CriminosoController{
             status,
             id_organizacao
         });
-    
+
+        const careTaker = new CriminosoCareTaker();
+        // Salvar o estado inicial
+        careTaker.addMemento(new CriminosoMemento(createdCriminoso));
+
         return res.json(createdCriminoso).status(201).send(); 
     }
 
@@ -52,15 +58,6 @@ export default class CriminosoController{
         const findCriminoso = container.resolve(FindOneCriminosoService);
 
         const {id,nomeCompleto,caracteristicas,id_paisOrigem,apelido,dataNascimento,altura,idade,genero,id_paisVistoPorUltimo,foto,status,newStatus,id_organizacao} = req.body;
-       
-        const criminoso = await findCriminoso.execute(id);
-
-        if (!criminoso) {
-          return res.status(404).json({ error: "Criminoso não encontrado" });
-        }
-        this.statusMementos[id] = criminoso.clone();
-
-        criminoso.setStatus(newStatus);
 
         const formatedDate = new Date(dataNascimento).toISOString();
         const createdCriminoso = await updateCriminoso.execute({
@@ -76,7 +73,6 @@ export default class CriminosoController{
             id_paisVistoPorUltimo, 
             foto, 
             status,
-            newStatus,
             id_organizacao
         });
         return res.json(createdCriminoso).status(201).send();
@@ -103,27 +99,7 @@ export default class CriminosoController{
         return res.json(gotAllCriminoso).status(200).send();
     }
 
-    public async undoStatusChange(req: Request, res: Response): Promise<Response> {
-        const { id } = req.params;
-        const criminoso = this.statusMementos[id];
-    
-        if (!criminoso) {
-          return res.status(404).json({ error: "Nenhuma alteração de status a ser desfeita" });
-        }
-    
-        const updateCriminoso = container.resolve(UpdateCriminosoService);
-    
-    
-        const statusMemento = criminoso.clone();
-        this.statusMementos[id] = statusMemento;
-    
-        const updatedCriminoso = await updateCriminoso.execute({
-          id,
-          newStatus: statusMemento.getStatus(),
-        });
-    
-        return res.json(updatedCriminoso);
-      }
+ 
       
 
 

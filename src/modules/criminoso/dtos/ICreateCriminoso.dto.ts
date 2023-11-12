@@ -11,6 +11,5 @@ export default interface ICreateCriminosoDTO {
     id_paisVistoPorUltimo: string;
     foto: string;
     status:string;
-    newStatus:string;
     id_organizacao:string
 }
