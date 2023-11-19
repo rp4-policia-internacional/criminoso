@@ -10,7 +10,8 @@ import { CriminosoCareTaker } from "@modules/criminoso/memento/CriminosoCareTake
 
 
 export default class CriminosoController{
-    
+    private careTaker: CriminosoCareTaker = new CriminosoCareTaker(); // Defina careTaker como uma propriedade
+
     public async create(req:Request, res:Response):Promise<Response>{
         const createCriminoso = container.resolve(CreateCriminosoService);
 
@@ -32,11 +33,9 @@ export default class CriminosoController{
             foto, 
             status,
             id_organizacao
-        });
-
-        const careTaker = new CriminosoCareTaker();
-        // Salvar o estado inicial
-        careTaker.addMemento(new CriminosoMemento(createdCriminoso));
+        });     
+        
+        this.careTaker.addMemento(new CriminosoMemento(createdCriminoso));
 
         return res.json(createdCriminoso).status(201).send(); 
     }
@@ -75,6 +74,9 @@ export default class CriminosoController{
             status,
             id_organizacao
         });
+        
+        this.careTaker.addMemento(new CriminosoMemento(createdCriminoso));
+        
         return res.json(createdCriminoso).status(201).send();
     }
 
@@ -99,7 +101,11 @@ export default class CriminosoController{
         return res.json(gotAllCriminoso).status(200).send();
     }
 
- 
+    public async exibirHistorico(req: Request, res: Response): Promise<Response> {
+        const historico = this.careTaker.getMementos().map((memento) => memento.getState());
+        
+        return res.json(historico).status(200).send();
+    }
       
 
 

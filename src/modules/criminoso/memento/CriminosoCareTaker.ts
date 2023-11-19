@@ -10,4 +10,7 @@ export class CriminosoCareTaker {
     getMemento(index: number): CriminosoMemento | undefined {
       return this.mementos[index];
     }
+    getMementos(): CriminosoMemento[] {
+      return this.mementos;
+    }
   }

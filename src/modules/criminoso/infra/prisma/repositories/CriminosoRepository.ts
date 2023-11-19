@@ -3,7 +3,6 @@ import ICreateCriminosoDTO from "@modules/criminoso/dtos/ICreateCriminoso.dto";
 import CriminosoEntity from "@modules/criminoso/entities/Criminoso.entity";
 import ICriminosoRepository from "@modules/criminoso/repository/ICriminosoRepository";
 
-
 export default class CriminosoRepository implements ICriminosoRepository{
     
     public async create(data: ICreateCriminosoDTO): Promise<CriminosoEntity> {
@@ -30,6 +29,5 @@ export default class CriminosoRepository implements ICriminosoRepository{
         const criminosos = await prisma.criminoso.findMany();       
         return criminosos;
     }
-  
 
 }
