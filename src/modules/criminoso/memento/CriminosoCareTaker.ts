@@ -2,6 +2,7 @@ import { CriminosoMemento } from "@modules/criminoso/memento/CriminosoMemento";
 
 export class CriminosoCareTaker {
     private mementos: CriminosoMemento[] = [];
+    
   
     addMemento(memento: CriminosoMemento): void {
       this.mementos.push(memento);
@@ -13,12 +14,6 @@ export class CriminosoCareTaker {
     getMementos(): CriminosoMemento[] {
       return this.mementos;
     }
-    getHistorico(): any[] | string {
-      if (this.mementos.length === 0) {
-        return "Nenhum histórico disponível.";
-      }
-      return this.mementos.map(memento => memento.getState());
-    }
-
+   
   }
   export default CriminosoCareTaker;
