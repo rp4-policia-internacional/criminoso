@@ -17,9 +17,8 @@ export class CriminosoCareTaker {
       if (this.mementos.length === 0) {
         return "Nenhum histórico disponível.";
       }
-
-      // Retorna o histórico como um array de objetos
       return this.mementos.map(memento => memento.getState());
     }
 
   }
+  export default CriminosoCareTaker;

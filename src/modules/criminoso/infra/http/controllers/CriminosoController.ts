@@ -10,7 +10,7 @@ import { CriminosoCareTaker } from "@modules/criminoso/memento/CriminosoCareTake
 
 
 export default class CriminosoController{
-    private careTaker= new CriminosoCareTaker(); // Defina careTaker como uma propriedade
+    public careTaker = new CriminosoCareTaker();
 
     public async create(req:Request, res:Response):Promise<Response>{
         const createCriminoso = container.resolve(CreateCriminosoService);
@@ -35,7 +35,7 @@ export default class CriminosoController{
             id_organizacao
         });     
         
-        this.careTaker.addMemento(new CriminosoMemento(createdCriminoso));
+        //this.careTaker.addMemento(new CriminosoMemento(createdCriminoso));
 
         return res.json(createdCriminoso).status(201).send(); 
     }
