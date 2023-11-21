@@ -102,7 +102,7 @@ export default class CriminosoController{
     }
 
     public async exibirHistorico(req: Request, res: Response): Promise<Response> {
-        const historico = this.careTaker.getMementos().map((memento) => memento.getState());
+        const historico = this.careTaker.getHistorico();
         
         return res.json(historico).status(200).send();
     }
