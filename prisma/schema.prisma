@@ -30,3 +30,20 @@ model Organizacao {
   lider     String @db.VarChar
   sigla     String @db.VarChar
 }
+
+model HistoricoCriminoso {
+  id                    String   @id 
+  nomeCompleto          String   @db.VarChar
+  altura                Float
+  idade                 Int
+  dataNascimento        DateTime @db.Date
+  status                String   @db.VarChar
+  apelido               String   @db.VarChar
+  caracteristicas       String   @db.VarChar
+  foto                  String   @db.VarChar
+  genero                String   @db.VarChar
+  id_paisOrigem         String   @db.VarChar
+  id_paisVistoPorUltimo String   @db.VarChar
+  id_organizacao        String   @db.VarChar
+  dataAtualizacao       DateTime @db.Date
+}

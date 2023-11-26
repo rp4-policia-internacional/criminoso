@@ -1,10 +1,11 @@
-import { CriminosoMemento } from "@modules/criminoso/memento/CriminosoMemento";
+import { CriminosoMemento } from "./CriminosoMemento";
 
 export class CriminosoCareTaker {
     private mementos: CriminosoMemento[] = [];
     
   
     addMemento(memento: CriminosoMemento): void {
+      
       this.mementos.push(memento);
     }
   

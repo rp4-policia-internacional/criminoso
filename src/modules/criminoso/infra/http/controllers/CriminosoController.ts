@@ -5,15 +5,17 @@ import DeleteCriminosoService from "@modules/criminoso/services/DeleteCriminosoS
 import UpdateCriminosoService from "@modules/criminoso/services/UpdateCriminosoService";
 import FindOneCriminosoService from "@modules/criminoso/services/FindOneCriminosoService";
 import ListCriminosoService from "@modules/criminoso/services/ListCriminosoService";
-import { CriminosoMemento } from "@modules/criminoso/memento/CriminosoMemento";
-import { CriminosoCareTaker } from "@modules/criminoso/memento/CriminosoCareTaker";
+import MementoCriminosoService from "@modules/criminoso/services/MementoCriminosoServece";
+import { CriminosoMemento } from "../../../memento/CriminosoMemento";
+import { CriminosoCareTaker } from "../../../memento/CriminosoCareTaker";
 
 
-export default class CriminosoController{
-    private careTaker: CriminosoCareTaker = new CriminosoCareTaker();
+export default class CriminosoController{   
 
     public async create(req:Request, res:Response):Promise<Response>{
         const createCriminoso = container.resolve(CreateCriminosoService);
+        const createMemento = container.resolve(MementoCriminosoService);
+        const careTaker = new CriminosoCareTaker();
 
         const {id,nomeCompleto,caracteristicas,id_paisOrigem,apelido,dataNascimento,altura,idade,genero,id_paisVistoPorUltimo,foto,status,id_organizacao} = req.body;
 
@@ -35,11 +37,15 @@ export default class CriminosoController{
             id_organizacao
         });     
 
-        const mementoCriminoso = new CriminosoMemento(createdCriminoso)
-        
-        this.careTaker.addMemento(mementoCriminoso);
+        const mementoCriminoso = new CriminosoMemento(createdCriminoso);
+        careTaker.addMemento(mementoCriminoso);
 
-        return res.json(mementoCriminoso).status(201).send(); 
+        await createMemento.execute({
+            ...createdCriminoso, 
+            dataAtualizacao: new Date()
+        });
+
+        return res.json(createdCriminoso).status(201).send(); 
     }
 
     public async delete(req:Request, res:Response):Promise<Response>{
@@ -56,8 +62,8 @@ export default class CriminosoController{
 
     public async update(req: Request, res: Response): Promise<Response> {
         const updateCriminoso = container.resolve(UpdateCriminosoService);
-        const findCriminoso = container.resolve(FindOneCriminosoService);
-
+        const createMemento = container.resolve(MementoCriminosoService);
+        const careTaker = new CriminosoCareTaker();
         const {id,nomeCompleto,caracteristicas,id_paisOrigem,apelido,dataNascimento,altura,idade,genero,id_paisVistoPorUltimo,foto,status,newStatus,id_organizacao} = req.body;
 
         const formatedDate = new Date(dataNascimento).toISOString();
@@ -77,8 +83,14 @@ export default class CriminosoController{
             id_organizacao
         });
         
-        this.careTaker.addMemento(new CriminosoMemento(createdCriminoso));
+        //careTaker.addMemento(new CriminosoMemento(createdCriminoso));
         
+        await createMemento.execute({
+            ...createdCriminoso, 
+            dataAtualizacao: new Date()
+        });
+        console.log(createMemento);
+
         return res.json(createdCriminoso).status(201).send();
     }
 
@@ -103,12 +115,7 @@ export default class CriminosoController{
         return res.json(gotAllCriminoso).status(200).send();
     }
 
-    public async exibirHistorico(req: Request, res: Response): Promise<Response> {
-        const historico = this.careTaker.getMementos().map(memento => memento.getState());
-        
-        return res.json(historico).status(200).send();
-    }
-      
+    
 
 
 }
