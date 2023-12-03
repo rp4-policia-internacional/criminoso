@@ -1,4 +1,5 @@
 class MementoEntity{
+    idHistorico:string;
     id:string;
     nomeCompleto:string;
     caracteristicas: string;
@@ -14,7 +15,8 @@ class MementoEntity{
     id_organizacao:string;   
     dataAtualizacao:Date;
 
-    constructor(id:string, nomeCompleto:string, caracteristicas: string, id_paisOrigem:string,apelido:string, dataNascimento:Date, altura: number, idade: number , genero:string, id_paisVistoPorUltimo:string, foto:string,status:string,id_organizacao:string, dataAtualizacao:Date){
+    constructor(idHistorico:string,id:string, nomeCompleto:string, caracteristicas: string, id_paisOrigem:string,apelido:string, dataNascimento:Date, altura: number, idade: number , genero:string, id_paisVistoPorUltimo:string, foto:string,status:string,id_organizacao:string, dataAtualizacao:Date){
+        this.idHistorico=idHistorico;
         this.id=id;
         this.nomeCompleto=nomeCompleto;
         this.caracteristicas=caracteristicas;

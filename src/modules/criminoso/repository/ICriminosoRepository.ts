@@ -11,5 +11,6 @@ export default interface ICriminosoRepository{
     update(data: ICreateCriminosoDTO): Promise<CriminosoEntity>;
     listAll():Promise<CriminosoEntity[]>;
     createMemento(data: ICreateMementoDTO):Promise<MementoEntity>;
+    listAllMemento():Promise<MementoEntity[]>;
     
 }

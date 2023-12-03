@@ -1,4 +1,5 @@
 export default interface ICreateMementoDTO {
+    idHistorico:string;
     id:string;
     nomeCompleto: string;
     caracteristicas: string;

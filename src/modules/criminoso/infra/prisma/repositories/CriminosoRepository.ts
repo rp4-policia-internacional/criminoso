@@ -36,5 +36,10 @@ export default class CriminosoRepository implements ICriminosoRepository{
 
         return historico as unknown as MementoEntity;
     }
+    public async listAllMemento(): Promise<MementoEntity[]> {
+        const historicoMemento = await prisma.historicoCriminoso.findMany();    
+        return historicoMemento;
+    }
+
 
 }

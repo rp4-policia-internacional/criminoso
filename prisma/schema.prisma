@@ -31,8 +31,9 @@ model Organizacao {
   sigla     String @db.VarChar
 }
 
-model HistoricoCriminoso {
-  id                    String   @id 
+model HistoricoCriminoso { 
+  idHistorico           String   @id @default(uuid())
+  id                    String   @db.VarChar
   nomeCompleto          String   @db.VarChar
   altura                Float
   idade                 Int

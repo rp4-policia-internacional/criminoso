@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "HistoricoCriminoso" (
-    "id" TEXT NOT NULL,
+    "idHistorico" TEXT NOT NULL,
+    "id" VARCHAR NOT NULL,
     "nomeCompleto" VARCHAR NOT NULL,
     "altura" DOUBLE PRECISION NOT NULL,
     "idade" INTEGER NOT NULL,
@@ -15,5 +16,5 @@ CREATE TABLE "HistoricoCriminoso" (
     "id_organizacao" VARCHAR NOT NULL,
     "dataAtualizacao" DATE NOT NULL,
 
-    CONSTRAINT "HistoricoCriminoso_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "HistoricoCriminoso_pkey" PRIMARY KEY ("idHistorico")
 );
