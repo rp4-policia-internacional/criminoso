@@ -9,6 +9,7 @@ import MementoCriminosoService from "@modules/criminoso/services/MementoCriminos
 import { CriminosoMemento } from "../../../memento/CriminosoMemento";
 import { CriminosoCareTaker } from "../../../memento/CriminosoCareTaker";
 import ListMementoCriminosoService from "@modules/criminoso/services/ListMementoCriminosoService";
+import FindOneCriminosoMementoService from "@modules/criminoso/services/FindOneCriminosoMementoService";
 
 
 export default class CriminosoController{   
@@ -125,6 +126,19 @@ export default class CriminosoController{
         console.log(historico);
 
         return res.json(getAllHistorico).status(200).send();
+    }
+    
+    public async getOneMemento(req: Request, res: Response): Promise<Response> {
+        const getOneMemento = container.resolve(FindOneCriminosoMementoService);
+
+        const {id} = req.params;
+
+        const gotOneMemento = await getOneMemento.execute(
+            id
+        );
+
+        return res.json(gotOneMemento).status(200).send();
+
     }
 
     

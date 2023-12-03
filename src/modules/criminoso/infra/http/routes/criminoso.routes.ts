@@ -13,6 +13,7 @@ criminosoRoutes.get("/:id", controller.getOne);
 criminosoRoutes.get("/", controller.getAll);
 criminosoRoutes.put("/", controller.update);
 criminosoRoutes.get("/historico",controller.exibirHistorico);
+criminosoRoutes.get("/historico/:id", controller.getOneMemento);
 
 
 const upload = multer({dest: path.join(__dirname, '../../../uploads')});
