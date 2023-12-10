@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { injectable, inject} from "tsyringe";
 import IOrganizacaoRepository from "../repository/IOrganizacaoRepository";
 import OrganizacaoEntity from "../entities/Organizacao.entity";
