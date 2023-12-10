@@ -11,9 +11,9 @@ import { CriminosoCareTaker } from "../../../memento/CriminosoCareTaker";
 import ListMementoCriminosoService from "@modules/criminoso/services/ListMementoCriminosoService";
 import FindOneCriminosoMementoService from "@modules/criminoso/services/FindOneCriminosoMementoService";
 
-
+//let idHistorico = 1;
 export default class CriminosoController{   
-
+   
     public async create(req:Request, res:Response):Promise<Response>{
         const createCriminoso = container.resolve(CreateCriminosoService);
         const createMemento = container.resolve(MementoCriminosoService);
@@ -41,12 +41,13 @@ export default class CriminosoController{
 
         const mementoCriminoso = new CriminosoMemento(createdCriminoso);
         careTaker.addMemento(mementoCriminoso);
-        var idHistorico= "";
+        
         await createMemento.execute({
-            idHistorico,
             ...createdCriminoso, 
-            dataAtualizacao: new Date()
+            dataAtualizacao: new Date(),
         });
+        
+       
 
         return res.json(createdCriminoso).status(201).send(); 
     }
@@ -86,14 +87,13 @@ export default class CriminosoController{
             id_organizacao
         });
         
-        //careTaker.addMemento(new CriminosoMemento(createdCriminoso));
-        const idHistorico = "";
         await createMemento.execute({
-            idHistorico,
+         //   idHistorico,
             ...createdCriminoso, 
             dataAtualizacao: new Date()
         });
-        console.log(createMemento);
+        
+      
 
         return res.json(createdCriminoso).status(201).send();
     }

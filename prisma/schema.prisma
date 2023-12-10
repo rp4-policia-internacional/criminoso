@@ -32,7 +32,7 @@ model Organizacao {
 }
 
 model HistoricoCriminoso { 
-  idHistorico           String   @id @default(uuid())
+  idHistorico           Int     @id @default(autoincrement())
   id                    String   @db.VarChar
   nomeCompleto          String   @db.VarChar
   altura                Float

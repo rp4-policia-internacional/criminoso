@@ -1,4 +1,4 @@
-import DeleteCriminosoServece from '../src/modules/criminoso/services/DeleteCriminosoService.ts'
+import DeleteCriminosoServece from '../src/modules/criminoso/services/DeleteCriminosoService.js'
 
 describe('Teste: Deletar criminoso', () =>{
     it('Testando a excluisão de criminoso', () => {

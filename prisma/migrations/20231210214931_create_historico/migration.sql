@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "HistoricoCriminoso" (
-    "idHistorico" TEXT NOT NULL,
+    "idHistorico" SERIAL NOT NULL,
     "id" VARCHAR NOT NULL,
     "nomeCompleto" VARCHAR NOT NULL,
     "altura" DOUBLE PRECISION NOT NULL,
