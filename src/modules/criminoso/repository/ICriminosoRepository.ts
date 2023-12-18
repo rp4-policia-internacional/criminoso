@@ -12,6 +12,6 @@ export default interface ICriminosoRepository{
     listAll():Promise<CriminosoEntity[]>;
     createMemento(data: ICreateMementoDTO):Promise<MementoEntity>;
     listAllMemento():Promise<MementoEntity[]>;
-    findByIdMemento(id: string): Promise<MementoEntity>;
+    findByIdMemento(id: string): Promise<MementoEntity[]>;
     
 }

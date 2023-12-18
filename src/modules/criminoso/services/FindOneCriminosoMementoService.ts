@@ -12,7 +12,7 @@ class FindOneCriminosoMementoService {
     }
 
     public async execute(id: string) {
-        const findHistoricoCriminoso= await this.criminosoRepository.findById(id);
+        const findHistoricoCriminoso= await this.criminosoRepository.findByIdMemento(id);
         
         return findHistoricoCriminoso;
 

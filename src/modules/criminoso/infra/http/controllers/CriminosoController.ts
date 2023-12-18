@@ -121,21 +121,18 @@ export default class CriminosoController{
 
     public async exibirHistorico(req: Request, res: Response): Promise<Response> {
         const historico = container.resolve(ListMementoCriminosoService);
-
+        
         const getAllHistorico = await historico.execute();
-        console.log(historico);
-
-        return res.json(getAllHistorico).status(200).send();
+        
+        return res.status(200).json(getAllHistorico);
     }
     
-    public async getOneMemento(req: Request, res: Response): Promise<Response> {
+    public async getMemento(req: Request, res: Response): Promise<Response> {
         const getOneMemento = container.resolve(FindOneCriminosoMementoService);
 
         const {id} = req.params;
 
-        const gotOneMemento = await getOneMemento.execute(
-            id
-        );
+        const gotOneMemento = await getOneMemento.execute(id);
 
         return res.json(gotOneMemento).status(200).send();
 
